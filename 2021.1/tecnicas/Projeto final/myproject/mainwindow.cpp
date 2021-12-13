@@ -6,7 +6,7 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
-
+#include <QtCharts/QValueAxis>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -26,14 +26,14 @@ void MainWindow::on_pushButton_clicked()
     double value;
     QChart *chart, *chart1, *chart2, *chart3;
     //QChartView *chartView, *chartView1, *chartView2, *chartView3;
-    QSplineSeries *seriesA = new QSplineSeries(); // Alocando memória para a série SEN
+    QSplineSeries *seriesA = new QSplineSeries(); //alocando memoria serie corrente
     seriesA->setName("Corrente"); // setado o nome da série
-    QSplineSeries *seriesB = new QSplineSeries(); // Alocando memória para a série COSSENO
+    QSplineSeries *seriesB = new QSplineSeries();
     seriesB->setName("Temperatura Ambiente"); // setado o nome da série
-    QSplineSeries *seriesC = new QSplineSeries(); // Alocando memória para a série COSSENO
-    seriesB->setName("Tensão Bateria"); // setado o nome da série
-    QSplineSeries *seriesD = new QSplineSeries(); // Alocando memória para a série COSSENO
-    seriesB->setName("Temperatura Bateria"); // setado o nome da série
+    QSplineSeries *seriesC = new QSplineSeries();
+    seriesC->setName("Tensão Bateria"); // setado o nome da série
+    QSplineSeries *seriesD = new QSplineSeries();
+    seriesD->setName("Temperatura Bateria"); // setado o nome da série
     QFile inputFile(ui->lineEdit_2->text());
     QString XMAX=ui->lineEdit->text();
     value = XMAX.toDouble();
@@ -55,10 +55,6 @@ void MainWindow::on_pushButton_clicked()
     *seriesD << QPointF(k, j);
     }
     inputFile.close();
-    seriesA->setName("Corrente");
-    seriesB->setName("Temperatura Ambiente");
-    seriesC->setName("Tensão");
-    seriesD->setName("Temperatura Bateria");
     chart = new QChart(); //Criando um gráfico CHART
     chart1 = new QChart();
     chart2 = new QChart();
@@ -124,27 +120,198 @@ qDebug() << value;
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    double initial, final; int x;
-QFile inputFile(ui->lineEdit_2->text());
-if(!inputFile.open(QIODevice::ReadOnly))
-qDebug() << "Arquivo não aberto";
-else
-qDebug() << "Arquivo OK";
-QString XMAX=ui->lineEdit_3->text();
-initial = XMAX.toDouble();
-QString X=ui->lineEdit_4->text();
-final = X.toDouble();
-QTextStream in(&inputFile);
-QString line = in.readLine();
-ui->textEdit_2->setText(line);
-for (x=initial/2;x<final/2;x++) {
-    QString line = in.readLine();
-    ui->textEdit_2->append(line);
-    qDebug() << line;
+    ui->textEdit_2->clear();
 
-}
+    double t_inicial;
+    double t_final = 0;
+    uint64_t t_inicial_inteiro;
+    uint64_t t_final_inteiro;
+    QFile inputFile(ui->lineEdit_2->text());
+    if(!inputFile.open(QIODevice::ReadOnly)){
+        qDebug() << "Arquivo não aberto";
+    } else {qDebug() << "Arquivo OK";}
+    QString XMAX=ui->lineEdit_3->text();
+    t_inicial = XMAX.toDouble();
+    QString X=ui->lineEdit_4->text();
+    t_final = X.toDouble();
+    t_inicial_inteiro = t_inicial;
+    if (t_final == (uint64_t)t_final){t_final_inteiro = t_final;}
+    else {t_final_inteiro = t_final + 1;}
+    QTextStream in(&inputFile);
+    QString linha_importante = in.readLine();
+    ui->textEdit_2->setText(linha_importante);
+    double linha_inicial = 0;
+    double linha_final = 0;
+    if (t_inicial_inteiro % 2 == 0){
+        linha_inicial = (t_inicial_inteiro + 2)/2;
+    } else {
+        linha_inicial = (t_inicial_inteiro + 1)/2;
+    }
+    if (t_final_inteiro % 2 == 0){
+        linha_final = (t_final_inteiro + 2)/2;
+    } else {linha_final = (t_final_inteiro + 3)/2;}
 
+    uint64_t linha_corrente = 1;
+    while (linha_corrente != linha_inicial){
+        QString linha_lixo = in.readLine();
+        linha_corrente += 1;
+    }
+    while (linha_corrente <= linha_final){
+        QString linha_importante = in.readLine();
+        ui->textEdit_2->append(linha_importante);
+        qDebug() << linha_importante;
+
+        linha_corrente += 1;
+    }
 inputFile.close();
 
 }
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    double t_inicial;
+    double t_final = 0;
+    uint64_t t_inicial_inteiro;
+    uint64_t t_final_inteiro;
+    double value;
+    QChart *chart, *chart1, *chart2, *chart3;
+    //QChartView *chartView, *chartView1, *chartView2, *chartView3;
+    QSplineSeries *seriesA = new QSplineSeries(); // Alocando memória para a série SEN
+    seriesA->setName("Corrente"); // setado o nome da série
+    QSplineSeries *seriesB = new QSplineSeries(); // Alocando memória para a série COSSENO
+    seriesB->setName("Temperatura Ambiente"); // setado o nome da série
+    QSplineSeries *seriesC = new QSplineSeries(); // Alocando memória para a série COSSENO
+    seriesC->setName("Tensão Bateria"); // setado o nome da série
+    QSplineSeries *seriesD = new QSplineSeries(); // Alocando memória para a série COSSENO
+    seriesD->setName("Temperatura Bateria"); // setado o nome da série
+    QFile inputFile(ui->lineEdit_2->text());
+    if(!inputFile.open(QIODevice::ReadOnly)){
+        qDebug() << "Arquivo não aberto";
+    } else {qDebug() << "Arquivo OK";}
+    QString XMAX=ui->lineEdit_3->text();
+    t_inicial = XMAX.toDouble();
+    QString X=ui->lineEdit_4->text();
+    t_final = X.toDouble();
+    t_inicial_inteiro = t_inicial;
+    if (t_final == (uint64_t)t_final){t_final_inteiro = t_final;}
+    else {t_final_inteiro = t_final + 1;}
+    QTextStream in(&inputFile);
+    QString linha_lixo = in.readLine();
+    double linha_inicial = 0;
+    double linha_final = 0;
+    if (t_inicial_inteiro % 2 == 0){
+        linha_inicial = (t_inicial_inteiro + 2)/2;
+    } else {
+        linha_inicial = (t_inicial_inteiro + 1)/2;
+    }
+    if (t_final_inteiro % 2 == 0){
+        linha_final = (t_final_inteiro + 2)/2;
+    } else {linha_final = (t_final_inteiro + 3)/2;}
+    uint64_t linha_corrente = 1;
+    while (linha_corrente != linha_inicial){
+        QString linha_lixo = in.readLine();
+        linha_corrente += 1;
+    }
+    float x, y, z,j; char lixo;
+    float min_x = 10000, min_y = 10000, min_z = 10000, min_j = 10000;
+    float max_x = 0, max_y = 0, max_z = 0, max_j = 0;
+    float media_x = 0, media_y = 0, media_z = 0, media_j = 0;
+    int n_iteracoes = 0;
+        int k = linha_corrente;
+        while (linha_corrente <= linha_final){
+            in >> x;
+            in >> lixo; // ler 1a ','
+            in >> y;
+            in >> lixo; // ler 2a ','
+            in >> z;
+            in >> lixo; // ler 3a ','
+            in >> j;
+            media_x += x;
+            media_y += y;
+            media_z += z;
+            media_j += j;
+            if (x < min_x) {min_x = x;}
+            if (y < min_y) {min_y = y;}
+            if (z < min_z) {min_z = z;}
+            if (j < min_j) {min_j = j;}
+            if (x > max_x) {max_x = x;}
+            if (y > max_y) {max_y = y;}
+            if (z > max_z) {max_z = z;}
+            if (j > max_j) {max_j = j;}
+            *seriesA << QPointF(linha_corrente-k, x);
+            *seriesB << QPointF(linha_corrente-k, y);
+            *seriesC << QPointF(linha_corrente-k, z);
+            *seriesD << QPointF(linha_corrente-k, j);
+            linha_corrente += 1;
+            n_iteracoes += 1;
+        }
+        media_x = media_x/n_iteracoes;
+        media_y = media_y/n_iteracoes;
+        media_z = media_z/n_iteracoes;
+        media_j = media_j/n_iteracoes;
+
+        //Setando as médias
+        QString text_media = QString("Average: %1").arg(QString::number(media_x));
+        QString text_mediay = QString("Average: %1").arg(QString::number(media_y));
+        QString text_mediaz = QString("Average: %1").arg(QString::number(media_z));
+        QString text_mediaj = QString("Average: %1").arg(QString::number(media_j));
+
+        ui->label_6->setText(text_media);
+        ui->label_8->setText(text_mediay);
+        ui->label_11->setText(text_mediaz);
+        ui->label_14->setText(text_mediaj);
+        //Setando os máx
+        QString text_max = QString("Max: %1").arg(QString::number(max_x));
+        QString text_maxy = QString("Max: %1").arg(QString::number(max_y));
+        QString text_maxz = QString("Max: %1").arg(QString::number(max_z));
+        QString text_maxj = QString("Max: %1").arg(QString::number(max_j));
+
+        ui->label_7->setText(text_max);
+        ui->label_9->setText(text_maxy);
+        ui->label_12->setText(text_maxz);
+        ui->label_15->setText(text_maxj);
+
+        //Setando os min
+        QString text_minx = QString("Min: %1").arg(QString::number(min_x));
+        QString text_miny = QString("Min: %1").arg(QString::number(min_y));
+        QString text_minz = QString("Min: %1").arg(QString::number(min_z));
+        QString text_minj = QString("Min: %1").arg(QString::number(min_j));
+
+        ui->label_4->setText(text_minx);
+        ui->label_10->setText(text_miny);
+        ui->label_13->setText(text_minz);
+        ui->label_16->setText(text_minj);
+
+inputFile.close();
+chart = new QChart(); //Criando um gráfico CHART
+chart1 = new QChart();
+chart2 = new QChart();
+chart3 = new QChart();
+chart->addSeries(seriesA); //Adiconando cada série no gráfico
+chart->legend()->setVisible(true);
+chart->setTitle("Current");
+chart->createDefaultAxes();
+
+chart1->addSeries(seriesB);
+chart1->legend()->setVisible(true);
+chart1->setTitle("Grafico Temperatura Ambiente");
+chart1->createDefaultAxes();
+
+chart2->addSeries(seriesC);
+chart2->legend()->setVisible(true);
+chart2->setTitle("Grafico Tensão");
+chart2->createDefaultAxes();
+
+chart3->addSeries(seriesD);
+chart3->legend()->setVisible(true);
+chart3->setTitle("Grafico Temperatura Bateria");
+chart3->createDefaultAxes();
+
+ui->graphicsView->setChart(chart);
+ui->graphicsView_2->setChart(chart1);
+ui->graphicsView_3->setChart(chart2);
+ui->graphicsView_4->setChart(chart3);
+}
+
 
