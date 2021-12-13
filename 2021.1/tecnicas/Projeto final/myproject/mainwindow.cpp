@@ -6,7 +6,7 @@
 #include <QtCharts/QChartView>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QSplineSeries>
-#include <QtCharts/QValueAxis>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -252,7 +252,7 @@ void MainWindow::on_pushButton_4_clicked()
         media_j = media_j/n_iteracoes;
 
         //Setando as médias
-        QString text_media = QString("Average: %1").arg(QString::number(media_x));
+        QString text_media = QString("Average: %1 ").arg(QString::number(media_x));
         QString text_mediay = QString("Average: %1").arg(QString::number(media_y));
         QString text_mediaz = QString("Average: %1").arg(QString::number(media_z));
         QString text_mediaj = QString("Average: %1").arg(QString::number(media_j));
