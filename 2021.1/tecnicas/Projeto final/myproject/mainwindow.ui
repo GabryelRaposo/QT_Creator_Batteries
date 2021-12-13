@@ -17,8 +17,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>60</y>
+      <x>30</x>
+      <y>40</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -31,17 +31,17 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>120</y>
+      <y>100</y>
       <width>271</width>
-      <height>271</height>
+      <height>151</height>
      </rect>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>60</y>
+      <x>130</x>
+      <y>40</y>
       <width>151</width>
       <height>22</height>
      </rect>
@@ -51,20 +51,20 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>410</y>
+      <y>260</y>
       <width>271</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
-     <string>Draw Graphic</string>
+     <string>Draw Graphic based on lines</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>20</y>
+      <x>50</x>
+      <y>0</y>
       <width>51</width>
       <height>16</height>
      </rect>
@@ -76,8 +76,8 @@
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>20</y>
+      <x>130</x>
+      <y>0</y>
       <width>151</width>
       <height>22</height>
      </rect>
@@ -87,7 +87,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>90</y>
+      <y>70</y>
       <width>271</width>
       <height>24</height>
      </rect>
@@ -134,6 +134,88 @@
       <width>481</width>
       <height>301</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Initial Time(Sec)</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>300</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>330</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Final Time(Sec)</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>330</y>
+      <width>151</width>
+      <height>16</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>281</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>360</y>
+      <width>281</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Open File</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>600</y>
+      <width>281</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Draw Graphic based on time</string>
     </property>
    </widget>
   </widget>

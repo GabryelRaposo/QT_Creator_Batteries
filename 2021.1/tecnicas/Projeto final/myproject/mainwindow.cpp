@@ -25,7 +25,7 @@ void MainWindow::on_pushButton_clicked()
 {
     double value;
     QChart *chart, *chart1, *chart2, *chart3;
-    QChartView *chartView, *chartView1, *chartView2, *chartView3;
+    //QChartView *chartView, *chartView1, *chartView2, *chartView3;
     QSplineSeries *seriesA = new QSplineSeries(); // Alocando memória para a série SEN
     seriesA->setName("Corrente"); // setado o nome da série
     QSplineSeries *seriesB = new QSplineSeries(); // Alocando memória para a série COSSENO
@@ -83,11 +83,11 @@ void MainWindow::on_pushButton_clicked()
     chart3->setTitle("Grafico Temperatura Bateria");
     chart3->createDefaultAxes();
 
-    chartView = new QChartView(chart); //Criando o visualizador do gráfico CHART
-    chartView1 = new QChartView(chart1); //Criando o visualizador do gráfico CHART
-    chartView2 = new QChartView(chart2); //Criando o visualizador do gráfico CHART
-    chartView3 = new QChartView(chart3); //Criando o visualizador do gráfico CHART
-    chartView->setRenderHint(QPainter::Antialiasing); //"Amaciar as linhas (evitar degraus)
+    //chartView = new QChartView(chart); //Criando o visualizador do gráfico CHART
+    //chartView1 = new QChartView(chart1); //Criando o visualizador do gráfico CHART
+    //chartView2 = new QChartView(chart2); //Criando o visualizador do gráfico CHART
+    //chartView3 = new QChartView(chart3); //Criando o visualizador do gráfico CHART
+    //chartView->setRenderHint(QPainter::Antialiasing); //"Amaciar as linhas (evitar degraus)
     ui->graphicsView->setChart(chart);
     ui->graphicsView_2->setChart(chart1);
     ui->graphicsView_3->setChart(chart2);
@@ -120,4 +120,31 @@ qDebug() << value;
 
 }
 
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    double initial, final; int x;
+QFile inputFile(ui->lineEdit_2->text());
+if(!inputFile.open(QIODevice::ReadOnly))
+qDebug() << "Arquivo não aberto";
+else
+qDebug() << "Arquivo OK";
+QString XMAX=ui->lineEdit_3->text();
+initial = XMAX.toDouble();
+QString X=ui->lineEdit_4->text();
+final = X.toDouble();
+QTextStream in(&inputFile);
+QString line = in.readLine();
+ui->textEdit_2->setText(line);
+for (x=initial/2;x<final/2;x++) {
+    QString line = in.readLine();
+    ui->textEdit_2->append(line);
+    qDebug() << line;
+
+}
+
+inputFile.close();
+
+}
 
