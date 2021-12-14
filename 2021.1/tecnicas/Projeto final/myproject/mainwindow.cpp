@@ -83,7 +83,11 @@ void MainWindow::on_pushButton_clicked()
     //chartView1 = new QChartView(chart1); //Criando o visualizador do gráfico CHART
     //chartView2 = new QChartView(chart2); //Criando o visualizador do gráfico CHART
     //chartView3 = new QChartView(chart3); //Criando o visualizador do gráfico CHART
-    //chartView->setRenderHint(QPainter::Antialiasing); //"Amaciar as linhas (evitar degraus)
+    //chartView->setRenderHint(QPainter::Antialiasing);
+    //chartView1->setRenderHint(QPainter::Antialiasing);
+    //chartView2->setRenderHint(QPainter::Antialiasing);
+    //chartView3->setRenderHint(QPainter::Antialiasing);
+    //"Amaciar as linhas (evitar degraus)
     ui->graphicsView->setChart(chart);
     ui->graphicsView_2->setChart(chart1);
     ui->graphicsView_3->setChart(chart2);
