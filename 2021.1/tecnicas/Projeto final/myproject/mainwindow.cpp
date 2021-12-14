@@ -239,10 +239,10 @@ void MainWindow::on_pushButton_4_clicked()
             if (y > max_y) {max_y = y;}
             if (z > max_z) {max_z = z;}
             if (j > max_j) {max_j = j;}
-            *seriesA << QPointF(linha_corrente-k, x);
-            *seriesB << QPointF(linha_corrente-k, y);
-            *seriesC << QPointF(linha_corrente-k, z);
-            *seriesD << QPointF(linha_corrente-k, j);
+            *seriesA << QPointF((linha_corrente-k)*2 + t_inicial_inteiro, x);
+            *seriesB << QPointF((linha_corrente-k)*2 + t_inicial_inteiro, y);
+            *seriesC << QPointF((linha_corrente-k)*2 + t_inicial_inteiro, z);
+            *seriesD << QPointF((linha_corrente-k)*2 + t_inicial_inteiro, j);
             linha_corrente += 1;
             n_iteracoes += 1;
         }
