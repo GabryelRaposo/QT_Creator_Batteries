@@ -247,9 +247,13 @@ void MainWindow::on_pushButton_4_clicked()
             n_iteracoes += 1;
         }
         media_x = media_x/n_iteracoes;
+        qDebug() << media_x;
         media_y = media_y/n_iteracoes;
+        qDebug() << media_y;
         media_z = media_z/n_iteracoes;
+        qDebug() << media_z;
         media_j = media_j/n_iteracoes;
+        qDebug() << media_j;
 
         //Setando as médias
         QString text_media = QString("Average: %1 ").arg(QString::number(media_x));
@@ -258,7 +262,7 @@ void MainWindow::on_pushButton_4_clicked()
         QString text_mediaj = QString("Average: %1").arg(QString::number(media_j));
 
         ui->label_6->setText(text_media);
-        ui->label_8->setText(text_mediay);
+        ui->label_17->setText(text_mediay);
         ui->label_11->setText(text_mediaz);
         ui->label_14->setText(text_mediaj);
         //Setando os máx
@@ -313,5 +317,3 @@ ui->graphicsView_2->setChart(chart1);
 ui->graphicsView_3->setChart(chart2);
 ui->graphicsView_4->setChart(chart3);
 }
-
-
