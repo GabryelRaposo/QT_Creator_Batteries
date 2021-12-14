@@ -47,5 +47,7 @@ In the c25.csv file there are 4 columns, namely:
 
 # Project development
 
+The requisitions for the GUI construction was to turn the user able to see the parameters through two ways. The first one was to create a button to open the CSV file with a determined quantity of lines, given by the user, starting from the beginning, the other, was to enter a period of time in seconds to open the same CSV file. After opening the user was able to draw four graphics, each one representing the parameters from the battery aT the period determined before. The image below represents the GUI and his operation.
+
 
 
