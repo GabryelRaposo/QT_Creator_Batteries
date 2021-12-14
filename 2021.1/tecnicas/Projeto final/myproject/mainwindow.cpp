@@ -27,13 +27,13 @@ void MainWindow::on_pushButton_clicked()
     QChart *chart, *chart1, *chart2, *chart3;
     //QChartView *chartView, *chartView1, *chartView2, *chartView3;
     QSplineSeries *seriesA = new QSplineSeries(); //alocando memoria serie corrente
-    seriesA->setName("Corrente"); // setado o nome da série
+    seriesA->setName("Battery Current"); // setado o nome da série
     QSplineSeries *seriesB = new QSplineSeries();
-    seriesB->setName("Temperatura Ambiente"); // setado o nome da série
+    seriesB->setName("Room Temperature"); // setado o nome da série
     QSplineSeries *seriesC = new QSplineSeries();
-    seriesC->setName("Tensão Bateria"); // setado o nome da série
+    seriesC->setName("Battery Voltage"); // setado o nome da série
     QSplineSeries *seriesD = new QSplineSeries();
-    seriesD->setName("Temperatura Bateria"); // setado o nome da série
+    seriesD->setName("Battery Temperature"); // setado o nome da série
     QFile inputFile(ui->lineEdit_2->text());
     QString XMAX=ui->lineEdit->text();
     value = XMAX.toDouble();
@@ -61,22 +61,22 @@ void MainWindow::on_pushButton_clicked()
     chart3 = new QChart();
     chart->addSeries(seriesA); //Adiconando cada série no gráfico
     chart->legend()->setVisible(true);
-    chart->setTitle("Grafico Corrente");
+    chart->setTitle("Battery Current");
     chart->createDefaultAxes();
 
     chart1->addSeries(seriesB);
     chart1->legend()->setVisible(true);
-    chart1->setTitle("Grafico Temperatura Ambiente");
+    chart1->setTitle("Room Temperature");
     chart1->createDefaultAxes();
 
     chart2->addSeries(seriesC);
     chart2->legend()->setVisible(true);
-    chart2->setTitle("Grafico Tensão");
+    chart2->setTitle("Battery Voltage");
     chart2->createDefaultAxes();
 
     chart3->addSeries(seriesD);
     chart3->legend()->setVisible(true);
-    chart3->setTitle("Grafico Temperatura Bateria");
+    chart3->setTitle("Battery Temperature");
     chart3->createDefaultAxes();
 
     //chartView = new QChartView(chart); //Criando o visualizador do gráfico CHART
@@ -178,13 +178,13 @@ void MainWindow::on_pushButton_4_clicked()
     QChart *chart, *chart1, *chart2, *chart3;
     //QChartView *chartView, *chartView1, *chartView2, *chartView3;
     QSplineSeries *seriesA = new QSplineSeries(); // Alocando memória para a série SEN
-    seriesA->setName("Corrente"); // setado o nome da série
+    seriesA->setName("Battery Current"); // setado o nome da série
     QSplineSeries *seriesB = new QSplineSeries(); // Alocando memória para a série COSSENO
-    seriesB->setName("Temperatura Ambiente"); // setado o nome da série
+    seriesB->setName("Room Temperature"); // setado o nome da série
     QSplineSeries *seriesC = new QSplineSeries(); // Alocando memória para a série COSSENO
-    seriesC->setName("Tensão Bateria"); // setado o nome da série
+    seriesC->setName("Battery Voltage"); // setado o nome da série
     QSplineSeries *seriesD = new QSplineSeries(); // Alocando memória para a série COSSENO
-    seriesD->setName("Temperatura Bateria"); // setado o nome da série
+    seriesD->setName("Battery Temperature"); // setado o nome da série
     QFile inputFile(ui->lineEdit_2->text());
     if(!inputFile.open(QIODevice::ReadOnly)){
         qDebug() << "Arquivo não aberto";
@@ -294,22 +294,22 @@ chart2 = new QChart();
 chart3 = new QChart();
 chart->addSeries(seriesA); //Adiconando cada série no gráfico
 chart->legend()->setVisible(true);
-chart->setTitle("Current");
+chart->setTitle("Battery Current");
 chart->createDefaultAxes();
 
 chart1->addSeries(seriesB);
 chart1->legend()->setVisible(true);
-chart1->setTitle("Grafico Temperatura Ambiente");
+chart1->setTitle("Room Temperature");
 chart1->createDefaultAxes();
 
 chart2->addSeries(seriesC);
 chart2->legend()->setVisible(true);
-chart2->setTitle("Grafico Tensão");
+chart2->setTitle("Battery Voltage");
 chart2->createDefaultAxes();
 
 chart3->addSeries(seriesD);
 chart3->legend()->setVisible(true);
-chart3->setTitle("Grafico Temperatura Bateria");
+chart3->setTitle("Battery Temperature");
 chart3->createDefaultAxes();
 
 ui->graphicsView->setChart(chart);
