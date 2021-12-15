@@ -40,6 +40,8 @@ Below you can see the first lines of the DataFrame:
 | 1.6797 | 24.1 | 2.79602 | 24.1 |
 | 1.6797 | 24.1 | 2.79663 | 24.1 |
 
+The battery test sampling time was 2 seconds, that is, every 2 seconds, a record was obtained.
+
 In the c25.csv file there are 4 columns, namely:
 - I = battery current
 - TA = room temperature
